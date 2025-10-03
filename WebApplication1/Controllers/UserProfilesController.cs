@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
             return View(await _context.UserProfiles.ToListAsync());
         }
 
-        // GET: User/Details/5
+        // GET: User/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,8 +50,6 @@ namespace WebApplication1.Controllers
         }
 
         // POST: User/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FullName,Email,Role")] UserProfile userProfile)

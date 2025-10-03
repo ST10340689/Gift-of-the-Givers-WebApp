@@ -6,6 +6,8 @@ namespace WebApplication1.Models
 {
     public class DisasterReport
     {
+
+        // Getters and Setters
         public int Id { get; set; }
 
         [Required]

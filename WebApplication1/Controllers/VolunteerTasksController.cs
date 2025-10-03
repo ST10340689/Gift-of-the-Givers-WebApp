@@ -45,7 +45,7 @@ public class VolunteerTasksController : Controller
         };
 
         _context.VolunteerTasks.Add(task);
-        _context.SaveChanges(); // Saves directly to Azure DB
+        _context.SaveChanges(); // Saves directly to the Azure DB
 
         return RedirectToAction("Index");
     }

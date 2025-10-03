@@ -10,6 +10,7 @@ namespace WebApplication1.Data
         {
         }
 
+        // Getters and Setters
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<DisasterReport> DisasterReports { get; set; }
         public DbSet<Donation> Donations { get; set; }
