@@ -18,13 +18,13 @@ public class AccountController : Controller
         return View();
     }
 
-    // POST: /Account/Login
+    // POST: Account/Login
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Login(string email, string password)
     {
         var user = _context.UserProfiles
-            .FirstOrDefault(u => u.Email == email); // Add password check if applicable
+            .FirstOrDefault(u => u.Email == email); // Add password check
 
         if (user != null)
         {
@@ -38,13 +38,13 @@ public class AccountController : Controller
         return View();
     }
 
-    // GET: /Account/Register
+    // GET: Account/Register
     public IActionResult Register()
     {
         return View();
     }
 
-    // POST: /Account/Register
+    // POST: Account/Register
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Register(string fullName, string email, string role, string password)

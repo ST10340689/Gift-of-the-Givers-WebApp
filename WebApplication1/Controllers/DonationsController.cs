@@ -26,7 +26,7 @@ public class DonationsController : Controller
         return View();
     }
 
-    // POST: /Donations/Create
+    // POST: Donations/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(string item, int quantity)
@@ -46,7 +46,7 @@ public class DonationsController : Controller
         };
 
         _context.Donations.Add(donation);
-        _context.SaveChanges(); // Saves directly to Azure DB
+        _context.SaveChanges(); // Saves directly to the Azure DB
 
         return RedirectToAction("Index");
     }

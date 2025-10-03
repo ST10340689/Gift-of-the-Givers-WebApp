@@ -19,7 +19,7 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        // GET: User
+        // GET: User Name
         public async Task<IActionResult> Index()
         {
             return View(await _context.UserProfiles.ToListAsync());

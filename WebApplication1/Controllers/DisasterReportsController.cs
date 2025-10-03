@@ -48,9 +48,9 @@ public class DisasterReportsController : Controller
         };
 
         _context.DisasterReports.Add(newReport);
-        _context.SaveChanges(); // Saves to Azure DB
+        _context.SaveChanges(); // Saves to the Azure DB
 
-        // Redirect back to the reports list
+        // Redirects back to the reports list
         return RedirectToAction("Index");
     }
 }
