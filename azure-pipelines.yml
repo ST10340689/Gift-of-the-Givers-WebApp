@@ -1,0 +1,68 @@
+# ASP.NET Core CI/CD pipeline for WebApplication1
+trigger:
+  branches:
+    include:
+      - master  # Triggers pipeline on pushes to master branch
+
+pool:
+  vmImage: 'windows-latest'  # Use Windows since it's .NET
+
+variables:
+  buildConfiguration: 'Release'
+  solution: '**/WebApplication1.sln'
+  project: 'WebApplication1/WebApplication1.csproj'
+  azureWebAppName: 'webapplication120251003180125-f9c5a0ckbkdtezgw' # Replace with your Azure Web App name
+  azureSubscription: 'Your-Service-Connection-Name' # Replace with your Azure DevOps service connection
+
+steps:
+
+# 1. Checkout code
+- task: Checkout@1
+
+# 2. Install .NET SDK
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '9.0.x'  # .NET 9
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+# 3. Restore NuGet packages
+- task: DotNetCoreCLI@2
+  displayName: 'Restore NuGet packages'
+  inputs:
+    command: 'restore'
+    projects: '$(solution)'
+
+# 4. Build solution
+- task: DotNetCoreCLI@2
+  displayName: 'Build solution'
+  inputs:
+    command: 'build'
+    projects: '$(solution)'
+    arguments: '--configuration $(buildConfiguration)'
+
+# 5. Run tests
+- task: DotNetCoreCLI@2
+  displayName: 'Run tests'
+  inputs:
+    command: 'test'
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-build'
+
+# 6. Publish project
+- task: DotNetCoreCLI@2
+  displayName: 'Publish project'
+  inputs:
+    command: 'publish'
+    projects: '$(project)'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+# 7. Deploy to Azure Web App
+- task: AzureWebApp@1
+  displayName: 'Deploy to Azure Web App'
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    appType: 'webApp'
+    appName: '$(azureWebAppName)'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
