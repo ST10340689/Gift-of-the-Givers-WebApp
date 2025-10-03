@@ -63,7 +63,7 @@ namespace WebApplication1.Controllers
             return View(userProfile);
         }
 
-        // GET: User/Edit/5
+        // GET: User/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,7 +79,7 @@ namespace WebApplication1.Controllers
             return View(userProfile);
         }
 
-        // POST: User/Edit/5
+        // POST: User/Edit
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -114,7 +114,7 @@ namespace WebApplication1.Controllers
             return View(userProfile);
         }
 
-        // GET: User/Delete/5
+        // GET: User/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -132,7 +132,7 @@ namespace WebApplication1.Controllers
             return View(userProfile);
         }
 
-        // POST: User/Delete/5
+        // POST: User/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

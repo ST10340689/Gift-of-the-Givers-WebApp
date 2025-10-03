@@ -34,7 +34,7 @@ app.UseRouting();
 builder.Services.AddSession();
 app.UseSession();
 
-app.UseAuthentication();
+app.UseAuthentication(); // Authen and Authro the DB
 app.UseAuthorization();
 
 app.MapControllerRoute(

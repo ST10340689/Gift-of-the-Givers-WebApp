@@ -2,10 +2,11 @@
 
 <h2>Disaster Reports</h2>
 
-@if (Context.Session.GetInt32("UserId") != null)
+@if (Context.Session.GetInt32("UserId") != null) // The user can only view reports made but cannot make a report
 {
     <a class="btn btn-primary mb-3" asp-action="Create">Submit New Report</a>
 }
+
 
 <table class="table table-bordered">
     <thead>
