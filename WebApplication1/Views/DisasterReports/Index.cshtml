@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication1.Models.DisasterReport>
+
+<h2>Disaster Reports</h2>
+
+@if (Context.Session.GetInt32("UserId") != null)
+{
+    <a class="btn btn-primary mb-3" asp-action="Create">Submit New Report</a>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Disaster Type</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Reported By</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td>@report.DisasterType</td>
+                <td>@report.Location</td>
+                <td>@report.Description</td>
+                <td>@report.User?.FullName</td>
+                <td>@report.ReportDate.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

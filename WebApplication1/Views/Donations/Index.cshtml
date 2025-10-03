@@ -1,0 +1,27 @@
+﻿@model IEnumerable<WebApplication1.Models.Donation>
+
+<h2>Donations</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">Make a Donation</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Donated By</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var donation in Model)
+        {
+            <tr>
+                <td>@donation.Item</td>
+                <td>@donation.Quantity</td>
+                <td>@donation.User?.FullName</td>
+                <td>@donation.DateDonated.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

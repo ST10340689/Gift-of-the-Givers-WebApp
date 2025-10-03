@@ -1,0 +1,25 @@
+﻿@model IEnumerable<WebApplication1.Models.VolunteerTask>
+
+<h2>Volunteer Tasks</h2>
+
+<a class="btn btn-primary mb-3" asp-action="Create">Volunteer for Task</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Task Name</th>
+            <th>Scheduled Date</th>
+            <th>Assigned Volunteer</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.TaskName</td>
+                <td>@task.ScheduledDate?.ToString("d")</td>
+                <td>@task.User?.FullName</td>
+            </tr>
+        }
+    </tbody>
+</table>
