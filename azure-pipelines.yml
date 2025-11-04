@@ -1,30 +1,29 @@
-# ASP.NET Core CI/CD pipeline for WebApplication1
 trigger:
   branches:
     include:
-      - master  # Triggers pipeline on pushes to master branch
+      - master 
 
 pool:
-  vmImage: 'windows-latest'  # Use Windows since it's .NET
+  vmImage: 'windows-latest' 
 
 variables:
   buildConfiguration: 'Release'
   solution: '**/WebApplication1.sln'
   project: 'WebApplication1/WebApplication1.csproj'
-  azureWebAppName: 'webapplication120251003180125-f9c5a0ckbkdtezgw' # Replace with your Azure Web App name
-  azureSubscription: 'Your-Service-Connection-Name' # Replace with your Azure DevOps service connection
+  azureWebAppName: 'webapplication120251003180125-f9c5a0ckbkdtezgw' 
+  azureSubscription: 'Your-Service-Connection-Name'
 
 steps:
 
-# 1. Checkout code
+# 1. Checkout source code
 - task: Checkout@1
 
 # 2. Install .NET SDK
 - task: UseDotNet@2
+  displayName: 'Install .NET SDK'
   inputs:
     packageType: 'sdk'
-    version: '9.0.x'  # .NET 9
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+    version: '9.0.x'
 
 # 3. Restore NuGet packages
 - task: DotNetCoreCLI@2
@@ -33,7 +32,7 @@ steps:
     command: 'restore'
     projects: '$(solution)'
 
-# 4. Build solution
+# 4. Build the solution
 - task: DotNetCoreCLI@2
   displayName: 'Build solution'
   inputs:
@@ -43,7 +42,7 @@ steps:
 
 # 5. Run tests
 - task: DotNetCoreCLI@2
-  displayName: 'Run tests'
+  displayName: 'Run unit tests'
   inputs:
     command: 'test'
     projects: '**/*Tests/*.csproj'
