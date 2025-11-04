@@ -32,11 +32,6 @@ public class DisasterReportsController : Controller
     public IActionResult Create(string disasterType, string location, string description)
     {
         var userId = HttpContext.Session.GetInt32("UserId");
-        if (userId == null)
-        {
-            // Redirect to login if not logged in
-            return RedirectToAction("Login", "Account");
-        }
 
         var newReport = new DisasterReport
         {
