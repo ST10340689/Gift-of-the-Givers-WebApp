@@ -31,7 +31,7 @@ public class AccountController : Controller
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserName", user.FullName);
 
-            return Redirect("https://webapplication120251003180125-f9c5a0ckbkdtezgw.southafricanorth-01.azurewebsites.net/Home/Index");
+            return Redirect("https://webapplication120251103233131-b5gmbmd5dmfgamh9.southafricanorth-01.azurewebsites.net/Home/Index");
         }
 
         ViewBag.Error = "Invalid email or password";
@@ -71,7 +71,7 @@ public class AccountController : Controller
         HttpContext.Session.SetInt32("UserId", newUser.Id);
         HttpContext.Session.SetString("UserName", newUser.FullName);
 
-        return Redirect("https://webapplication120251003180125-f9c5a0ckbkdtezgw.southafricanorth-01.azurewebsites.net/Home/Index");
+        return Redirect("https://webapplication120251103233131-b5gmbmd5dmfgamh9.southafricanorth-01.azurewebsites.net/Home/Index");
     }
 
 }

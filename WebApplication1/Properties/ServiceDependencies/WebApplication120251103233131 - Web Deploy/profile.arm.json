@@ -7,7 +7,7 @@
   "parameters": {
     "resourceGroupName": {
       "type": "string",
-      "defaultValue": "APPR6312",
+      "defaultValue": "AZ-JHB-RSG-RCGPPT-ST10340689-TER",
       "metadata": {
         "description": "Name of the resource group for the resource. It is recommended to put resources under same resource group for better tracking."
       }
@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "WebApplication120251003180125",
+      "defaultValue": "WebApplication120251103233131",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }
