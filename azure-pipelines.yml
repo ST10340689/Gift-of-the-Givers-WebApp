@@ -10,8 +10,8 @@ variables:
   buildConfiguration: 'Release'
   solution: '**/WebApplication1.sln'
   project: 'WebApplication1/WebApplication1.csproj'
-  azureWebAppName: 'webapplication120251003180125-f9c5a0ckbkdtezgw' 
-  azureSubscription: 'Your-Service-Connection-Name'
+  azureWebAppName: 'webapplication120251103233131-b5gmbmd5dmfgamh9' 
+  azureSubscription: 'ADvTECH-Tertiary Rosebank College'
 
 steps:
 
