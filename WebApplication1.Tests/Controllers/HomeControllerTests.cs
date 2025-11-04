@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using WebApplication1.Controllers;
 using Xunit;
 
@@ -11,9 +13,8 @@ namespace WebApplication1.Tests.Controllers
 
         public HomeControllerTests()
         {
-            
-            var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-            _logger = loggerFactory.CreateLogger<HomeController>();
+            // Use a no-op logger for tests to avoid depending on console providers
+            _logger = NullLogger<HomeController>.Instance;
         }
 
         [Fact]
@@ -40,6 +41,12 @@ namespace WebApplication1.Tests.Controllers
         public void Error_ReturnsViewWithErrorViewModel()
         {
             var controller = new HomeController(_logger);
+
+            // Provide a HttpContext so HttpContext.TraceIdentifier access inside Error() won't NRE
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext()
+            };
 
             var result = controller.Error() as ViewResult;
 
